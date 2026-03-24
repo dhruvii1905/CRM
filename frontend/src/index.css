@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+* { font-family: 'Kanit', sans-serif; }
+
+.dark { color-scheme: dark; }
