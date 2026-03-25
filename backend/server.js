@@ -7,37 +7,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 const server = http.createServer(app);
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://crm-ashy-ten.vercel.app',
-  'https://crm-navy-five.vercel.app',
-  'https://crm-backend-nivu.onrender.com'
-];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 const io = new Server(server, {
-  cors: {
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST'],
-    credentials: true
-  }
+  cors: { origin: '*', methods: ['GET', 'POST'] }
 });
 
 // Routes
