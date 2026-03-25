@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api/axios';
 
-const empty = { invoiceNo: '', service: '', amount: '', paidAmount: '', status: 'pending', dueDate: '', notes: '' };
+const empty = { service: '', amount: '', paidAmount: '', status: 'pending', dueDate: '', notes: '' };
 
 const statusStyle = {
   pending: 'bg-gray-100 text-gray-600 dark:bg-zinc-700 dark:text-gray-300',
@@ -51,9 +51,7 @@ export default function Invoices() {
 
       {showForm && (
         <form onSubmit={handleSubmit} className="bg-white dark:bg-zinc-800 rounded-2xl border border-gray-100 dark:border-zinc-700 p-6 mb-6 grid grid-cols-2 gap-4 shadow-sm">
-          <input className="border border-gray-200 dark:border-zinc-600 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-black dark:focus:border-white bg-transparent transition"
-            placeholder="Invoice No" value={form.invoiceNo} onChange={e => setForm({ ...form, invoiceNo: e.target.value })} required />
-          <select className="border border-gray-200 dark:border-zinc-600 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-zinc-800 outline-none focus:border-black transition"
+          <select className="border border-gray-200 dark:border-zinc-600 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-zinc-800 outline-none focus:border-black transition col-span-2"
             value={form.client} onChange={e => setForm({ ...form, client: e.target.value })} required>
             <option value="">Select Client</option>
             {customers.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
@@ -99,7 +97,7 @@ export default function Invoices() {
                 <td className="px-5 py-4 text-gray-500 dark:text-gray-400">{i.dueDate ? new Date(i.dueDate).toLocaleDateString() : '—'}</td>
                 <td className="px-5 py-4"><span className={`px-3 py-1 rounded-full text-xs font-medium ${statusStyle[i.status]}`}>{i.status}</span></td>
                 <td className="px-5 py-4 flex gap-3">
-                  <button onClick={() => { setForm({ ...i, client: i.client?._id || '', dueDate: i.dueDate?.slice(0, 10) || '' }); setEditing(i._id); setShowForm(true); }} className="text-sm font-medium hover:underline">Edit</button>
+                  <button onClick={() => { setForm({ ...i, client: i.client?._id || '', dueDate: i.dueDate?.slice(0, 10) || '', invoiceNo: undefined }); setEditing(i._id); setShowForm(true); }} className="text-sm font-medium hover:underline">Edit</button>
                   <button onClick={() => api.delete(`/invoices/${i._id}`).then(() => setInvoices(p => p.filter(x => x._id !== i._id)))} className="text-sm font-medium text-red-400 hover:underline">Delete</button>
                 </td>
               </tr>

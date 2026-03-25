@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const generateId = require('../utils/generateId');
 
 const userSchema = new mongoose.Schema({
+  _id: { type: String, default: generateId },
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },

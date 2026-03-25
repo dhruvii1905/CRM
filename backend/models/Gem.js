@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+const generateId = require('../utils/generateId');
 
 const gemSchema = new mongoose.Schema({
-  client: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
+  _id: { type: String, default: generateId },
+  client: { type: String, ref: 'Customer', required: true },
   registrationNo: String,
   category: String,
   status: { type: String, enum: ['not-started', 'in-progress', 'registered', 'suspended', 'expired'], default: 'not-started' },
