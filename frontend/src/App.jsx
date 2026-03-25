@@ -8,6 +8,11 @@ import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import Leads from './pages/Leads';
 import Tasks from './pages/Tasks';
+import Tenders from './pages/Tenders';
+import Followups from './pages/Followups';
+import Documents from './pages/Documents';
+import Gem from './pages/Gem';
+import Invoices from './pages/Invoices';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -35,6 +40,11 @@ export default function App() {
             <Route path="/customers" element={<PrivateRoute><Layout><Customers /></Layout></PrivateRoute>} />
             <Route path="/leads" element={<PrivateRoute><Layout><Leads /></Layout></PrivateRoute>} />
             <Route path="/tasks" element={<PrivateRoute><Layout><Tasks /></Layout></PrivateRoute>} />
+            <Route path="/tenders" element={<PrivateRoute><Layout><Tenders /></Layout></PrivateRoute>} />
+            <Route path="/followups" element={<PrivateRoute><Layout><Followups /></Layout></PrivateRoute>} />
+            <Route path="/documents" element={<PrivateRoute><Layout><Documents /></Layout></PrivateRoute>} />
+            <Route path="/gem" element={<PrivateRoute><Layout><Gem /></Layout></PrivateRoute>} />
+            <Route path="/invoices" element={<PrivateRoute><Layout><Invoices /></Layout></PrivateRoute>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

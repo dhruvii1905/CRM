@@ -5,22 +5,32 @@ const cols = {
   Customers: ['name', 'email', 'phone', 'company', 'status'],
   Leads: ['name', 'email', 'phone', 'source', 'status'],
   Tasks: ['title', 'description', 'status', 'priority'],
+  Tenders: ['title', 'portal', 'referenceNo', 'status'],
+  Followups: ['title', 'relatedModel', 'dueDate', 'status'],
+  Invoices: ['invoiceNo', 'service', 'amount', 'status'],
 };
 
 export default function Dashboard() {
-  const [data, setData] = useState({ Customers: [], Leads: [], Tasks: [] });
+  const [data, setData] = useState({ Customers: [], Leads: [], Tasks: [], Tenders: [], Followups: [], Invoices: [] });
   const [active, setActive] = useState(null);
 
   useEffect(() => {
-    Promise.all([api.get('/customers'), api.get('/leads'), api.get('/tasks')]).then(
-      ([c, l, t]) => setData({ Customers: c.data, Leads: l.data, Tasks: t.data })
-    );
+    Promise.all([
+      api.get('/customers'), api.get('/leads'), api.get('/tasks'),
+      api.get('/tenders'), api.get('/followups'), api.get('/invoices')
+    ]).then(([c, l, t, tn, f, inv]) => setData({
+      Customers: c.data, Leads: l.data, Tasks: t.data,
+      Tenders: tn.data, Followups: f.data, Invoices: inv.data
+    }));
   }, []);
 
   const cards = [
     { label: 'Customers', icon: '👥', desc: 'Total registered customers' },
     { label: 'Leads', icon: '📊', desc: 'Active sales leads' },
     { label: 'Tasks', icon: '✓', desc: 'Pending & ongoing tasks' },
+    { label: 'Tenders', icon: '📋', desc: 'Tender bids tracked' },
+    { label: 'Followups', icon: '🔔', desc: 'Scheduled follow-ups' },
+    { label: 'Invoices', icon: '💰', desc: 'Payment invoices' },
   ];
 
   return (

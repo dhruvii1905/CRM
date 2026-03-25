@@ -7,6 +7,11 @@ const links = [
   { to: '/customers', label: 'Customers', icon: '👥' },
   { to: '/leads', label: 'Leads', icon: '📊' },
   { to: '/tasks', label: 'Tasks', icon: '✓' },
+  { to: '/tenders', label: 'Tenders', icon: '📋' },
+  { to: '/followups', label: 'Follow-ups', icon: '🔔' },
+  { to: '/documents', label: 'Documents', icon: '📁' },
+  { to: '/gem', label: 'GeM Portal', icon: '🏛' },
+  { to: '/invoices', label: 'Invoices', icon: '💰' },
 ];
 
 export default function Sidebar() {

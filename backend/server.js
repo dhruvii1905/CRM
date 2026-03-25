@@ -19,6 +19,11 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/leads', require('./routes/leads'));
 app.use('/api/tasks', require('./routes/tasks'));
+app.use('/api/tenders', require('./routes/tenders'));
+app.use('/api/followups', require('./routes/followups'));
+app.use('/api/documents', require('./routes/documents'));
+app.use('/api/gem', require('./routes/gem'));
+app.use('/api/invoices', require('./routes/invoices'));
 
 // Socket.io
 io.on('connection', (socket) => {
