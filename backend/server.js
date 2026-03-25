@@ -7,12 +7,27 @@ const mongoose = require('mongoose');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: { origin: process.env.CLIENT_URL, methods: ['GET', 'POST'] }
-});
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://crm-ashy-ten.vercel.app'
+];
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+}));
 app.use(express.json());
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
+});
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
