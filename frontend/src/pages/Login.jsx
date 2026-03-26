@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import AuthLeftPanel from '../components/AuthLeftPanel';
 
 export default function Login() {
   const { login } = useAuth();
@@ -26,28 +27,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex bg-gray-50">
-      {/* Left Panel */}
-      <div className="hidden lg:flex w-1/2 bg-black text-white flex-col justify-center px-16 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5"
-          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-        <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-5xl">🏢</span>
-            <div>
-              <h1 className="text-3xl font-bold">Orical Technology</h1>
-              <p className="text-white/50 text-sm font-light">LLP — Ahmedabad, Est. 2022</p>
-            </div>
-          </div>
-          <div className="space-y-3 mt-6">
-            {['Tender Bidding & Consultancy', 'GeM Portal Registration', 'ISO & MSME Certification', 'Compliance Solutions'].map((s, i) => (
-              <div key={i} className="flex items-center gap-3 text-white/60 text-sm font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                {s}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <AuthLeftPanel />
 
       {/* Right Panel */}
       <div className="flex-1 flex items-center justify-center px-8">
