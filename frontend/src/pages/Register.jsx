@@ -74,7 +74,7 @@ export default function Register() {
       </div>
 
       <div className="flex-1 flex items-center justify-center px-8 py-10">
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <form onSubmit={handleSubmit} className="w-full max-w-sm" autoComplete="off">
           <div className="mb-6">
             <h2 className="text-3xl font-bold">Create account</h2>
             <p className="text-gray-400 text-sm mt-1 font-light">Fill in your details to get started</p>
@@ -101,7 +101,7 @@ export default function Register() {
             <div>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">✉</span>
-                <input className={inputClass('email')} placeholder="Email address" type="email"
+                <input className={inputClass('email')} placeholder="Email address" type="email" autoComplete="off"
                   value={form.email} onChange={e => handleChange('email', e.target.value)} />
               </div>
               {errors.email && <p className="text-red-500 text-xs mt-1 ml-1">⚠ {errors.email}</p>}
@@ -123,7 +123,7 @@ export default function Register() {
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔒</span>
                 <input
                   className={`w-full border rounded-xl pl-10 pr-12 py-3 text-sm outline-none transition-all duration-200 focus:shadow-sm ${errors.password ? 'border-red-400 bg-red-50' : 'border-gray-200 focus:border-black'}`}
-                  placeholder="Password" type={showPass ? 'text' : 'password'}
+                  placeholder="Password" type={showPass ? 'text' : 'password'} autoComplete="new-password"
                   value={form.password} onChange={e => handleChange('password', e.target.value)} />
                 <button type="button" onClick={() => setShowPass(p => !p)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition text-xs">
@@ -149,7 +149,7 @@ export default function Register() {
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔒</span>
                 <input
                   className={`w-full border rounded-xl pl-10 pr-12 py-3 text-sm outline-none transition-all duration-200 focus:shadow-sm ${errors.confirm ? 'border-red-400 bg-red-50' : form.confirm && form.confirm === form.password ? 'border-green-400' : 'border-gray-200 focus:border-black'}`}
-                  placeholder="Confirm Password" type={showConfirm ? 'text' : 'password'}
+                  placeholder="Confirm Password" type={showConfirm ? 'text' : 'password'} autoComplete="new-password"
                   value={form.confirm} onChange={e => handleChange('confirm', e.target.value)} />
                 <button type="button" onClick={() => setShowConfirm(p => !p)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition text-xs">
